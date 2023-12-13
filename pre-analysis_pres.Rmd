@@ -60,16 +60,7 @@ More info: The description should be no longer than the length of an abstract. I
 
 Gelman and King (1993) contend that pre-presidential election opinion poll responses are amiss because voters are generally uninformed until near or at election day. Prior to the election, voters are generally uninformed and respond likewise. They propose that voters are educated by presidential campaigns and ultimately decide their vote based on their enlightened preferences that they identify over the course of the campaign. These enlightened preferences are more in accord with economic and political conditions. 
 
-This paper assesses the determinants of vote choice by simulating the conditions of campaign election through the use of information provided in frames of economic, policy, and personality issues likely to arise in the 2024 campaign. 
-
-Research Questions:
-
-* Why do incumbent job approval ratings in the months leading up to election underestimate incumbent vote share in the general election? 
-* More broadly, why are presidential polls variable?
-* Do campaigns inform voters? 
-* What issues drive vote choice? 
-
-TEST
+This paper assesses the determinants of vote choice by simulating the conditions of campaign election through the use of information provided in frames of economic, policy, and personality issues likely to arise in the 2024 campaign. We are particularly interested in how these frames affect various politically important demographics, including young, Black, and Hispanic voters. 
 
 
 ### 4.	Hypotheses
@@ -84,22 +75,21 @@ Respondents will be assigned to one of three treatment conditions (ECONOMIC, POL
 
 #### Economic Treatment 
 
-* H1: Respondents assigned to the ECONOMIC treatment condition will express relatively greater preference to Biden than those assigned to the control group as measured by feeling thermometers and vote choice. We expect this effect is strongest among Biden 2020 voters and Democrats.
+* H1: Respondents assigned to the ECONOMIC treatment condition will express relatively greater preference to Biden than those assigned to the control group as measured by feeling thermometers and vote choice. We expect this effect is strongest among Biden 2020 voter, Democrats, and liberals.
 * H1a: Respondents assigned to the ECONOMIC treatment condition will express greater economic optimism. 
 * H1b: Respondents assigned to the ECONOMIC treatment condition will support Joe Biden more than respondents assigned to the CONTROL condition. 
-* H1c: Liberals assigned to the ECONOMIC treatments will favor Joe Biden more than that conservatives assigned to the CONTROL condition.
+
 
 #### Policy Treatment 
 
 * H2: Respondents assigned to the POLICY treatment condition will express greater preference for the candidate who is closer to their policy position (measured in pre-treatment). For example, someone who is furthest to the left on abortion, will express greater support for Biden when exposed to treatment than those in the CONTROL condition.  
 * H2a: Respondents assigned to the POLICY treatment condition will perceive Trump and Biden to be further apart on policy than those assigned to the CONTROL condition.
 * H2b:  Partisans assigned to the POLICY treatments will favor co-partisans more than that partisans assigned to the CONTROL condition.
-* H2c: Liberals assigned to the POLICY treatments will favor Joe Biden more than that conservatives assigned to the CONTROL condition.
-* H2d: Younger voters assigned to the POLICY treatments will favor Democrats more than younger voters assigned to the CONTROL condition.
+
 
 #### Character Treatment 
 
-* H3: Respondents assigned to the CHARACTER treatment condition will express greater preference for Biden compared to the control as measured by vote choice and feeling thermometers. We expect this effect is strongest among Biden 2020 voters and Democrats.
+* H3: Respondents assigned to the CHARACTER treatment condition will express greater preference for Biden compared to the control as measured by vote choice and feeling thermometers. We expect this effect is strongest among Biden 2020 voters, Democrats, and liberals.
 * H3a: Respondents assigned to the CHARACTER treatment condition will express greater dissatisfaction for the way Trump conducts himself compared to respondents assigned to the CONTROL condition. 
 * H3b: Respondents assigned to the CHARACTER treatment condition will express greater satisfaction for the way Biden conducts himself compared to respondents assigned to the CONTROL condition. 
 
@@ -130,7 +120,8 @@ In this section, you will be asked to describe the overall design of your study.
 * Character control (Trump and Biden presidential actions)
 
 4. Manipulation Check
-5. Outcome Index
+5. Outcome Measures
+
 * How would you rate economic conditions today?
 * How likely are you to vote in the 2024 election
 * Vote choice
@@ -201,7 +192,7 @@ Example: We will use block randomization, where each participant will be randoml
 More info: Typical randomization techniques include: simple, block, stratified, and adaptive covariate randomization. If randomization is required for the study, the method should be specified here, not simply the source of random numbers.
 -->
 
-Randomization is essential for this study. Respondents will assigned by simple randomization to one of the six treatment conditions. Each treatment condition will be assigned roughly the same number of respondents. 
+Randomization is essential for this study. Respondents will be assigned by simple randomization to one of the six treatment conditions. Each treatment condition will be assigned roughly the same number of respondents. 
 
 ## Sampling Plan 
 
@@ -299,26 +290,25 @@ Example: We manipulated the percentage of sugar by mass added to brownies. The f
 More information: For any experimental manipulation, you should give a precise definition of each manipulated variable. This must include a precise description of the levels at which each variable will be set, or a specific definition for each categorical treatment. For example, “loud or quiet,” should instead give either a precise decibel level or a means of recreating each level. 'Presence/absence' or 'positive/negative' is an acceptable description if the variable is precisely described.
 -->
 
-* Economic treatment (question + answer)
-1. Growth - Surprise (y/n)
-2. Jobs and Unemployment - Surprise (y/n)
-3. Inflation - Surprise (y/n)
+Economic treatment (question + answer)
 
-* Policy treatment (policy divergence)
-1. Abortion - Surprise (y/n)
-2. Environmental - Surprise (y/n)
-3. Gaza - Surprise (y/n)
+* Growth - Surprise (y/n)
+* Jobs and Unemployment - Surprise (y/n)
+* Inflation - Surprise (y/n)
 
-* Character treatment (Trump unpresidential actions)
-1. January 6 - How presidential? (-50-50)
-2. Terminate Constitution - How presidential? (-50-50)
-3. Bible- How presidential? (-50-50)
+Policy treatment (policy divergence)
+
+* Abortion - Surprise (y/n)
+* Environmental - Surprise (y/n)
+* Gaza - Surprise (y/n)
+
+Character treatment (Trump unpresidential actions)
+
+* January 6 - How presidential? (-50-50)
+* Terminate Constitution - How presidential? (-50-50)
+* Bible- How presidential? (-50-50)
 
 
-* Character Control (Trump presidential actions)
-1. State of the Union - How presidential? (-50-50)
-2. Trump Disaster - How presidential? (-50-50)
-3. Trump Thanksgiving - How presidential? (-50-50)
 
 
 ### 17. Measured variables 
@@ -331,13 +321,15 @@ Example: The single outcome variable will be the perceived tastiness of the sing
 More information: Observational studies and meta-analyses will include only measured variables. As with the previous questions, the answers here must be precise. For example, 'intelligence,' 'accuracy,' 'aggression,' and 'color' are too vague. Acceptable alternatives could be 'IQ as measured by Wechsler Adult Intelligence Scale' 'percent correct,' 'number of threat displays,' and 'percent reflectance at 400 nm.'
 -->
 
-Manipulation Check
+Manipulation Check:
+
 * Econ Outlook - much worse - much better (-2:2)
 * Prez place - liberal-conservative (-3:3)
 * Trump norm ck - like-don't like (-1:1)
 * Biden norm ck - like-don't like (-1:1)
 
-Outcome Measures
+Outcome Measures:
+
 * econ today - poor-excellent (1-4)
 * likely voter - very likely - not likely at all (1-4)
 * vote choice - Biden, Trump, Someone else
@@ -345,7 +337,8 @@ Outcome Measures
 * things - right direction, wrong track, not sure (-1:1)
 
 
-Covariates
+Covariates:
+
 * race
 * sex
 * Party ID - Democrat, Republican, Independent, other
@@ -355,11 +348,13 @@ Covariates
 * 2020 vote choice - DT, JB, someone else, DK, non-voter
 * Follow politics - very closely-not closely at all (1:4)
 * Political knowledge
-- Is Chuck Schumer a Republican or Democrat?
-- How many justices serve on the U.S. Supreme Court?
-- On which of the following does the U.S. federal government currently spend the least?
-- Which party controls the U.S. House of Representatives?
-- Do you happen to know what job or political office is now held by John G. Roberts?
+
+
+  
+  - How many justices serve on the U.S. Supreme Court?
+  - On which of the following does the U.S. federal government currently spend the least?
+  - Which party controls the U.S. House of Representatives?
+  
 
 ### 18. Indices 
 
@@ -372,12 +367,14 @@ More information: If you are using multiple pieces of data to construct a single
 -->
 
 Outcome indices
+
 * Candidate preference = candidate ft + vote_choice
 * Outlook = things + enthus + econ_outlook
 * Civic Participation = likely + things + enthus 
 
 
 Measures
+
 * Political knowledge = chuck + court + spend + majority + chief
 * Econ pre-treat = gdp + unemployment + inflation
 
@@ -463,7 +460,7 @@ If you plan to explore your data set to look for unexpected differences or relat
 Example: We expect that certain demographic traits may be related to taste preferences. Therefore, we will look for relationships between demographic variables (age, gender, income, and marital status) and the primary outcome measures of taste preferences.
 -->
 
-We expect heterogeneous treatment effects for member of different demographics. Therefore we will look for heterogeneous treatment effects among different demographic variables (age, gender, income, race, and education)
+We expect heterogeneous treatment effects for members of different demographics, particularly young, Black, and Hispanic voters. Therefore we will look for heterogeneous treatment effects among different demographic variables (age, gender, income, race, and education).
 
 ## Other 
 

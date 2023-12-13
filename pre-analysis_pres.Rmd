@@ -58,9 +58,9 @@ Example: Though there is strong evidence to suggest that sugar affects taste pre
 More info: The description should be no longer than the length of an abstract. It can give some context for the proposed study, but great detail is not needed here for your preregistration. 
 -->
 
-Gelman and King (1993) contend that pre-presidential election opinion poll responses are amiss because voters are generally uninformed until near or at election day. Prior to the election, voters are generally uninformed and respond likewise. They propose that voters are educated by presidential campaigns and ultimately decide their vote based on their enlightened preferences that they identify over the course of the campaign. These enlightened preferences are more in accord with economic and political conditions. 
+Gelman and King (1993) contend that pre-presidential election opinion poll responses are amiss, relative to predictions based on other established methods of forecasting, because voters are generally uninformed until near or at election day. Prior to the election, voters are generally uninformed and respond likewise. They propose that voters are educated by presidential campaigns and ultimately decide their vote based on their enlightened preferences that they identify over the course of the campaign.
 
-This paper assesses the determinants of vote choice by simulating the conditions of campaign election through the use of information provided in frames of economic, policy, and personality issues likely to arise in the 2024 campaign. We are particularly interested in how these frames affect various politically important demographics, including young, Black, and Hispanic voters. 
+This paper assesses the determinants of vote choice by simulating the conditions of the final days of the 2024 presidential election campaign through the use of information provided in frames of economic, policy, and personality issues likely to be at the forefront of the contest. We are particularly interested in how these frames affect various politically important demographics, including Biden 2020, young, Black, and Hispanic voters. 
 
 
 ### 4.	Hypotheses
@@ -110,14 +110,12 @@ In this section, you will be asked to describe the overall design of your study.
 
 1. All respondents will answer pre-treatment political attitudes and demographic questions. 
 2. All respondents will answer pre-treatment economic, policy, and presidential character questions which asks them about their attitudes about these domains.
-3. Respondents will be randomly assigned to one of 6 treatment conditions.
+3. Respondents will be randomly assigned to one of four treatment conditions.
 
 * Economic treatment (question + answer)
-* Economic control (question)
 * Policy treatment (policy divergence)
-* Policy control
 * Character treatment (Trump unpresidential actions)
-* Character control (Trump and Biden presidential actions)
+* Control
 
 4. Manipulation Check
 5. Outcome Measures
@@ -170,15 +168,11 @@ More info: This question has a variety of possible answers. The key is for a res
 
 This is a straight-forward survey experiment. All respondents are asked pre-treatment questions regarding their political affiliations, vote history, attitudes toward policies and politics, and demographic questions.
 
-Next, all respondents are asked pre-treatment economic, policy, and political questions. Respondents are then randomly assigned to one of six treatment conditions. 
+Next, all respondents are asked pre-treatment economic, policy, and political questions. Respondents are then randomly assigned to one of four treatment conditions. 
 
 * Economic treatment (question + answer)
-* Economic control (question)
 * Policy treatment (policy divergence)
-* Policy control
 * Character treatment (Trump unpresidential actions)
-* Character control (Trump and Biden presidential actions)
-
 
 After treatment, all respondents are asked questions to assess the effectiveness of the manipulations. Finally, respondents are asked 7 questions that serve as the outcome measures. 
 
@@ -474,6 +468,7 @@ Enter any additional information not covered by other sections, or state not app
 
 ## References 
 
-Enter any references used throughout the text here.
+1. Gelman, Andrew, and Gary King. 1993. “Why Are American Presidential Election Campaign Polls so Variable When Votes Are so Predictable?” British Journal of Political Science 23(4): 409–51.
+
 
 

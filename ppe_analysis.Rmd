@@ -1,0 +1,200 @@
+---
+title: "PPE_Analysis"
+author: "Chandler James"
+date: "2023-12-20"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+# package loading
+
+library(haven)
+library(dplyr)
+library(ggplot2)
+library(readr)
+library(grid) #NAO
+library(tidyr)
+library(ggpubr) #NAO
+library(matrixStats) #NAO
+#install.packages("forcats")
+library(forcats) # NAO
+
+```
+# Load and recode data
+
+```{r}
+df <- read.csv("prezprime_final.csv")
+
+# NEED TO CLEAN OUT TEST/PREVIEWS
+df <- df %>%
+  filter(DistributionChannel=="anonymous") %>%
+  mutate(pass_ac = case_when(ac_2=="2,4" & ac_1==1~1))
+
+table(df$pass_ac)
+
+# KEEP IF PASS AC
+df <- df %>%
+  filter(pass_ac==1)
+
+# CREATE TREATMENT DUMMIES
+df <- df %>%
+  mutate(econ = case_when(group=="econ"~1,
+                          group=="control"~0),
+         
+         policy = case_when(group=="policy"~1, 
+                            group=="control"~0), 
+         
+         norms = case_when(group=="unpresidential"~1,
+                           group=="control"~0))
+
+
+# DV MEASURES
+
+df <- mutate(df, ft = candidate_ft_2 - candidate_ft_1, 
+                votebiden = case_when(vote_choice24==2~1,
+                                      vote_choice24==1~0,
+                                      vote_choice24==3~0),
+             
+                votebiden01 = case_when(vote_choice24==2~1,
+                                        vote_choice24==1~0),
+             
+                votebiden20 = case_when(vote_choice20==2~1,
+                                        vote_choice20==1~0))
+
+
+# PRE-TREATMENT POLICY MEASURES
+
+df <- mutate(df, place_abortion = abortion_trump - abortion_biden,
+             
+                
+                gaza_trump = 6 - gaza_trump, # MAKE HIGHER VALS MORE CONSERVATIVE
+                gaza_biden = 6 - gaza_biden,
+                gaza_self = 6 - gaza_self,
+             
+                place_gaza = gaza_trump - gaza_biden,
+             
+             know_abortion = case_when(place_abortion %in% c(-3:-1)~-1,
+                                       place_abortion %in% c(1:3)~1,
+                                       place_abortion %in% 0~0),
+             
+             know_gaza = case_when(place_gaza %in% c(-4:-1)~-1,
+                                   place_gaza %in% c(1:4)~1,
+                                   place_gaza %in% 0~0)
+             
+             
+)
+
+```
+
+
+
+# NAO preliminary analysis
+```{r}
+summary(lm(votebiden~policy, data=filter(df, age %in% 1:3 & abortion_self %in% 1:2)))
+summary(lm(votebiden~policy, data=filter(df, age %in% 6:7 & abortion_self %in% 1:2)))
+
+summary(lm(votebiden~policy, data=filter(df, race==1 & abortion_self %in% 1:2)))
+summary(lm(votebiden~policy, data=filter(df, race==2 & abortion_self %in% 1:2)))
+summary(lm(votebiden~policy, data=filter(df, latino==1 & abortion_self %in% 1:2)))
+summary(lm(votebiden~policy, data=filter(df, votebiden20==1 & abortion_self %in% 1:2)))
+
+
+
+summary(lm(votebiden~econ + factor(unemployment) + factor(inflation), data=filter(df, age %in% 1:3)))
+summary(lm(votebiden~econ + factor(unemployment) + factor(inflation), data=filter(df, age %in% 6:7)))
+
+summary(lm(votebiden~econ + factor(unemployment) + factor(inflation), data=filter(df, race==1)))
+summary(lm(votebiden~econ + factor(unemployment) + factor(inflation), data=filter(df, race==2)))
+summary(lm(votebiden~econ + factor(unemployment) + factor(inflation), data=filter(df, latino==1)))
+summary(lm(votebiden~econ + factor(unemployment) + factor(inflation), data=filter(df, votebiden20==1)))
+
+
+
+summary(lm(votebiden~norms + factor(vote_choice20), data=filter(df, age %in% 1:3)))
+summary(lm(votebiden~norms + factor(vote_choice20), data=filter(df, age %in% 6:7)))
+
+summary(lm(votebiden~norms + factor(vote_choice20), data=filter(df, race==1)))
+summary(lm(votebiden~norms + factor(vote_choice20), data=filter(df, race==2)))
+summary(lm(votebiden~norms + factor(vote_choice20), data=filter(df, latino==1)))
+summary(lm(votebiden~norms + factor(vote_choice20), data=filter(df, votebiden20==1)))
+
+```
+
+```{r}
+str(df)
+```
+
+# exploratory data analysis
+
+## histograms of demographic data
+```{r}
+
+ggplot(df, aes(edu)) + geom_histogram()
+ggplot(df, aes(race)) + geom_histogram()
+ggplot(df, aes(pid)) + geom_histogram()
+ggplot(df, aes(ideology)) + geom_histogram()
+ggplot(df, aes(vote_choice20)) + geom_histogram()
+ggplot(df, aes(followpolitics)) + geom_histogram()
+
+```
+
+## treatment histograms
+
+### unpresidential histograms
+```{r}
+
+ggplot(df, aes(trump_jan6_1)) + geom_histogram()
+ggplot(df, aes(trump_term_1)) + geom_histogram()
+ggplot(df, aes(trump_bible._1)) + geom_histogram()
+
+```
+
+## bivariate data visualization
+
+```{r}
+ggplot(data = df, aes(votebiden20, votebiden)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+
+summary(lm(votebiden ~ votebiden20, data = df))
+summary(lm(votebiden ~ votebiden20 + group, data = df))
+
+```
+
+
+
+# OLS regressions
+
+
+
+```{r}
+summary(df$votebiden)
+
+# treatment conditions on vote choice 24
+summary(lm(votebiden ~ norms, data = df))
+econ_mod1 <- lm(votebiden ~ econ, data = df) # statistically significant 
+econ_mod2 <- lm(votebiden ~ econ + ideology + votebiden20 + sex + age + edu, 
+                data = df)
+summary(lm(votebiden ~ policy, data = df))
+
+# full model 
+
+mod1 <- lm(votebiden ~ group, data = df)
+stargazer(mod1, type = "text")
+stargazer(econ_mod1, econ_mod2, type = "text")
+
+```
+
+
+## FT
+
+```{r}
+
+summary(lm(ft ~ group, data = df))
+
+```
+

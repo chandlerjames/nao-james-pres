@@ -22,6 +22,7 @@ library(ggpubr) #NAO
 library(matrixStats) #NAO
 #install.packages("forcats")
 library(forcats) # NAO
+library(stargazer)
 
 ```
 # Load and recode data
@@ -61,9 +62,13 @@ df <- mutate(df, ft = candidate_ft_2 - candidate_ft_1,
              
                 votebiden01 = case_when(vote_choice24==2~1,
                                         vote_choice24==1~0),
-             
+        
+             # added other non-biden 2020 voters      
                 votebiden20 = case_when(vote_choice20==2~1,
-                                        vote_choice20==1~0))
+                                        vote_choice20==1~0,
+                                        vote_choice20==3~0,
+                                        vote_choice20==4~0,
+                                        vote_choice20==5~0))
 
 
 # PRE-TREATMENT POLICY MEASURES
@@ -90,6 +95,95 @@ df <- mutate(df, place_abortion = abortion_trump - abortion_biden,
 
 ```
 
+# Demographics
+```{r}
+table(df$edu)
+
+df <- mutate(df, ba = case_when(edu %in% c(1:4)~0,
+                                edu %in% c(5:8)~1),
+             
+                latino = 2 - latino,
+             
+                white = case_when(race==1~1,
+                                  race %in% 2:6~0), 
+             
+                black = case_when(race==2~1,
+                                  race==1~0,
+                                  race %in% 3:6~0),
+             
+                male = case_when(sex == 1 ~ 1,
+                                 sex == 2 ~ 0), 
+             
+                party7 = case_when(dem_lean==1~1,
+                                   dem_lean==2~2,
+                                   rep_lean==1~7,
+                                   rep_lean==2~6,
+                                   ind_lean==1~3,
+                                   ind_lean==2~5,
+                                   ind_lean==3~4),
+             
+             likelyvoter = 5 - likelyvoter
+             
+             )
+
+df <- df %>%
+  mutate(partyid = as.numeric(case_when(
+    pid == "1" | ind_lean == "1" ~ "-1",
+    pid == "2" | ind_lean == "2" ~ "1",
+    pid == "4" | ind_lean == "3" ~ "0"
+  )))  
+
+
+
+
+summary(df$partyid)
+```
+
+# pretreatment policy measures
+
+```{r}
+df <- mutate(df, place_abortion = abortion_trump - abortion_biden,
+             
+                
+                gaza_trump = 6 - gaza_trump, # MAKE HIGHER VALS MORE CONSERVATIVE
+                gaza_biden = 6 - gaza_biden,
+                gaza_self = 6 - gaza_self,
+             
+                place_gaza = gaza_trump - gaza_biden,
+             
+             know_abortion = case_when(place_abortion %in% c(-3:-1)~-1,
+                                       place_abortion %in% c(1:3)~1,
+                                       place_abortion %in% 0~0),
+             
+             know_gaza = case_when(place_gaza %in% c(-4:-1)~-1,
+                                   place_gaza %in% c(1:4)~1,
+                                   place_gaza %in% 0~0),
+             
+             know_index = know_abortion + know_gaza
+             
+             
+)
+```
+
+
+```{r}
+hist(df$party7)
+
+hist(df$pid)
+
+hist(df$likelyvoter)
+
+hist(df$gaza_trump)
+hist(df$gaza_biden)
+hist(df$abortion_trump)
+hist(df$abortion_biden)
+hist(df$prez_place_1) # biden
+hist(df$prez_place_2) # trump
+hist(df$trumpnorms_check) 
+hist(df$bidennorms_check)
+hist(df$votebiden20)
+hist(df$partyid)
+```
 
 
 # NAO preliminary analysis
@@ -107,6 +201,8 @@ summary(lm(votebiden~policy, data=filter(df, votebiden20==1 & abortion_self %in%
 summary(lm(votebiden~econ + factor(unemployment) + factor(inflation), data=filter(df, age %in% 1:3)))
 summary(lm(votebiden~econ + factor(unemployment) + factor(inflation), data=filter(df, age %in% 6:7)))
 
+
+
 summary(lm(votebiden~econ + factor(unemployment) + factor(inflation), data=filter(df, race==1)))
 summary(lm(votebiden~econ + factor(unemployment) + factor(inflation), data=filter(df, race==2)))
 summary(lm(votebiden~econ + factor(unemployment) + factor(inflation), data=filter(df, latino==1)))
@@ -122,7 +218,54 @@ summary(lm(votebiden~norms + factor(vote_choice20), data=filter(df, race==2)))
 summary(lm(votebiden~norms + factor(vote_choice20), data=filter(df, latino==1)))
 summary(lm(votebiden~norms + factor(vote_choice20), data=filter(df, votebiden20==1)))
 
+
+
+
 ```
+
+# econ
+
+```{r}
+
+young_econ_info <- lm(votebiden~econ + factor(unemployment) + factor(inflation), data=filter(df, age %in% 1:3))
+
+
+old_econ_info <- lm(votebiden~econ + factor(unemployment) + factor(inflation), data=filter(df, age %in% 6:7))
+
+all_econ_info <- lm(votebiden~econ + factor(unemployment) + factor(inflation), data=df)
+
+stargazer(all_econ_info, young_econ_info , old_econ_info, type = "text")
+
+```
+
+# norms
+
+```{r}
+young_norms <- lm(votebiden ~ norms, data=filter(df, age %in% 1:3))
+old_norms <- lm(votebiden ~ norms, data=filter(df, age %in% 6:7))
+all_norms <- lm(votebiden ~ norms, data = df)
+
+
+# FT
+
+ft_young_norms <- lm(ft ~ norms, data = filter(df, age %in% 1:3))
+ft_old_norms <- lm(ft ~ norms, data = filter(df, age %in% 6:7))
+
+stargazer(all_norms, young_norms, old_norms, type = "text")
+stargazer(ft_young_norms, ft_old_norms, type = "text")
+```
+
+
+# policy 
+
+```{r}
+young_pol <- lm(votebiden ~ policy, data=filter(df, age %in% 1:3))
+old_pol <- lm(votebiden ~ policy, data=filter(df, age %in% 6:7))
+all_pol <- lm(votebiden ~ policy, data = df)
+
+stargazer(all_pol, young_pol, old_pol, type = "text")
+```
+
 
 ```{r}
 str(df)
